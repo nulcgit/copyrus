@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Check if the user provided a CIDv1 as an argument
+if [ -z "$1" ]; then
+  echo "Usage: $0 <CIDv1>"
+  exit 1
+fi
+
+CIDV1=$1
+
+# Convert CIDv1 to CIDv0
+CIDV0=$(ipfs cid format -v 0 $CIDV1 2>/dev/null)
+
+# Check if the conversion was successful
+if [ $? -ne 0 ]; then
+  echo "Error converting CIDv1 to CIDv0. Ensure the CIDv1 is a DAG-PB with SHA-256 hash."
+  exit 1
+fi
+
+echo "CIDv1: $CIDV1"
+echo "CIDv0: $CIDV0"

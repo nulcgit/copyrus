@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+cd "$(dirname "$0")"/..
+hash=$(ipfs add -r --nocopy -Q "$PWD/data/share/log")
+ipfspub "$hash"

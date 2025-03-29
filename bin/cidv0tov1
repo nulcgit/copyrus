@@ -1,0 +1,18 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+  echo "Usage: $0 <CIDv0>"
+  exit 1
+fi
+
+CIDV0=$1
+
+CIDV1=$(ipfs cid format -v 1 -b base32 $CIDV0)
+
+if [ $? -ne 0 ]; then
+  echo "Error converting CIDv0 to CIDv1"
+  exit 1
+fi
+
+echo "CIDv0: $CIDV0"
+echo "CIDv1: $CIDV1"

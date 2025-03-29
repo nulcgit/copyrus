@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+cd "$(dirname "$0")"/..
+echo -e "$(date -u "+%Y%m%d-%H%M%S")-$(cat $PWD/data/id.txt)-$(hostname) $1" | ipfs pubsub pub copyrus

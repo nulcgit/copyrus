@@ -1,0 +1,19 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+  echo "Usage: $0 <CID> [output_file]"
+  exit 1
+fi
+
+CID=$1
+OUTPUT_FILE=${2:-output.car}
+
+ipfs dag export $CID > $OUTPUT_FILE
+
+if [ $? -ne 0 ]; then
+  echo "Error exporting CID to CAR file"
+  exit 1
+fi
+
+echo "CID: $CID"
+echo "CAR file created: $OUTPUT_FILE"

@@ -1,0 +1,25 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+  echo "Usage: $0 <CAR file>"
+  exit 1
+fi
+
+CAR_FILE=$1
+
+IMPORT_OUTPUT=$(ipfs dag import $CAR_FILE)
+
+if [ $? -ne 0 ]; then
+  echo "Error importing CAR file"
+  exit 1
+fi
+
+ROOT_CIDS=$(echo "$IMPORT_OUTPUT" | grep 'root' | awk '{print $3}')
+
+if [ -z "$ROOT_CIDS" ]; then
+  echo "No root CIDs found in the CAR file"
+  exit 1
+fi
+
+echo "Root CIDs:"
+echo "$ROOT_CIDS"

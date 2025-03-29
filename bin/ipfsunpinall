@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+ipfs pin ls -q --type recursive | xargs ipfs pin rm
+ipfs repo gc
