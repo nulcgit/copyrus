@@ -1,6 +1,6 @@
 # Copyrus
 
-Copyrus - soft copy of reality / Копирус - электронная копия реальности
+Copyrus - soft copy of occurrences / Копирус - электронная копия событий
 
 Warning:  
 This is alpha software. Use at your own discretion!  
