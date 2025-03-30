@@ -22,7 +22,7 @@ echo IPFS_PATH="$PWD/data/.ipfs" | sudo tee -a /etc/environment
 source /etc/environment
 echo -e "PATH=$PATH\nCOPYRUS=$PWD\nIPFS_PATH=$IPFS_PATH\n$(sudo crontab -l)\n" | sudo crontab -
 sudo DEBIAN_FRONTEND=noninteractive apt full-upgrade -yq
-sudo DEBIAN_FRONTEND=noninteractive apt install -y git docker.io docker-compose-v2 build-essential python3-dev python3-pip python3-venv tmux cron iputils-ping net-tools unzip btop
+sudo DEBIAN_FRONTEND=noninteractive apt install -y git docker.io docker-compose-v2 build-essential python3-dev python3-pip python3-venv tmux cron iputils-ping net-tools unzip btop nginx
 sudo usermod -aG docker $USER
 sudo systemctl restart docker
 python3 -m venv venv
