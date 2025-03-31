@@ -38,6 +38,7 @@ sudo sed -i 's#^  Peers: \[\]$#  Peers: \[\n    tls://185.103.109.63:65534\n  \]
 sudo sed -i 's#^  Listen: \[\]$#  Listen: \[\]\n  AdminListen: 127.0.0.1:9001\n#' /etc/yggdrasil/yggdrasil.conf
 sudo sed -i "s#^  NodeInfo: {}#  NodeInfo: \{\n    name:copyrus-$currentdate\n  \}#" /etc/yggdrasil/yggdrasil.conf
 sudo systemctl restart yggdrasil
+ping -6 -c 6 222:a8e4:50cd:55c:788e:b0a5:4e2f:a92c
 
 sudo mkdir /ipfs /ipns
 sudo chmod 777 /ipfs
