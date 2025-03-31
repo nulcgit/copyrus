@@ -111,6 +111,33 @@ sudo apt-get update && sudo apt-get install nodejs -y
 node -v
 npm -v
 
+sudo apt install software-properties-common
+sudo add-apt-repository ppa:ondrej/php -y
+sudo apt update -y
+sudo DEBIAN_FRONTEND=noninteractive apt install -y php8.4-fpm php8.4-mysql php8.4-mbstring php8.4-xml php8.4-zip php8.4-curl php8.4-gd
+sudo cat << EOF | sudo tee /etc/nginx/sites-available/default
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+        root /var/www/html;
+        server_name _;
+        index index.php index.html index.htm index.nginx-debian.html;
+        location ~ \.php$ {
+            include snippets/fastcgi-php.conf;
+            fastcgi_pass unix:/run/php/php8.4-fpm.sock;
+        }
+}
+EOF
+sudo nginx -t
+sudo chown -R www-data:www-data /var/www/html
+cat << EOF | sudo -u www-data tee /var/www/html/index.php > /dev/null
+<?php
+    echo "Hello World!<br>GMT";
+    echo gmdate("Y-m-d");
+?>
+EOF
+sudo systemctl restart nginx
+
 echo -n "IPFS status:"
 ipfs cat QmYwoMEk7EvxXi6LcS2QE6GqaEYQGzfGaTJ9oe1m2RBgfs/test.txt
 echo -n "IPFSmount status:"
