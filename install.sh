@@ -3,7 +3,6 @@
 cd "$(dirname "$0")"
 mkdir -p temp apps data/share/log
 (echo -e "$(date -u) Copyrus installation started.") >> $PWD/data/log.txt
-DEBIAN_FRONTEND=noninteractive apt install -y sudo
 sudo apt update
 read -p "Enter IPFS port(default 4003): " IPFSPORT
 if [ -z "$IPFSPORT" ]; then
