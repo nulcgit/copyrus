@@ -11,8 +11,10 @@ fi
 arch=$(uname -m)
 if [[ "$arch" == "x86_64" ]]; then
     ipfsdistr="https://github.com/ipfs/kubo/releases/download/v0.34.1/kubo_v0.34.1_linux-amd64.tar.gz"
+    yggdistr="https://github.com/yggdrasil-network/yggdrasil-go/releases/download/v0.5.12/yggdrasil-0.5.12-amd64.deb"
 elif [[ "$arch" == "aarch64" ]]; then
     ipfsdistr="https://github.com/ipfs/kubo/releases/download/v0.34.1/kubo_v0.34.1_linux-arm64.tar.gz"
+    yggdistr="https://github.com/yggdrasil-network/yggdrasil-go/releases/download/v0.5.12/yggdrasil-0.5.12-arm64.deb"
 fi
 
 mkdir -p temp apps data/share/log
@@ -28,6 +30,14 @@ sudo systemctl restart docker
 python3 -m venv venv
 source venv/bin/activate
 pip install reader[cli] -q
+
+currentdate=$(date -u +%Y%m%d%H%M%S)
+wget -O temp/ygg.deb $yggdistr
+sudo dpkg -i temp/ygg.deb
+sudo sed -i 's#^  Peers: \[\]$#  Peers: \[\n    tls://185.103.109.63:65534\n  \]#' /etc/yggdrasil/yggdrasil.conf
+sudo sed -i 's#^  Listen: \[\]$#  Listen: \[\]\n  AdminListen: 127.0.0.1:9001\n#' /etc/yggdrasil/yggdrasil.conf
+sudo sed -i "s#^  NodeInfo: {}#  NodeInfo: \{\n    name:copyrus-$currentdate\n  \}#" /etc/yggdrasil/yggdrasil.conf
+sudo systemctl restart yggdrasil
 
 sudo mkdir /ipfs /ipns
 sudo chmod 777 /ipfs
