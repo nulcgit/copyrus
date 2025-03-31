@@ -18,8 +18,4 @@ x86-64/Arm64; Ubuntu Server 24.04; 1 Core; 1 GB RAM; 1 GB SWAP; 10 GB SSD; 10 Mb
 3. Type sudo password
 4. The system will reboot
 
-## Uninstall
-
-`cd; bash $COPYRUS/uninstall.sh`
-
 🄯 2025
