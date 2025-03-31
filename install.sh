@@ -123,7 +123,7 @@ sudo apt-get update && sudo apt-get install nodejs -y
 node -v
 npm -v
 
-sudo apt install software-properties-common
+sudo DEBIAN_FRONTEND=noninteractive apt install -y software-properties-common
 sudo add-apt-repository ppa:ondrej/php -y
 sudo apt update -y
 sudo DEBIAN_FRONTEND=noninteractive apt install -y php8.4-fpm php8.4-mysql php8.4-mbstring php8.4-xml php8.4-zip php8.4-curl php8.4-gd
