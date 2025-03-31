@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 cd "$(dirname "$0")"
+mkdir -p temp apps data/share/log
 (echo -e "$(date -u) Copyrus installation started.") >> $PWD/data/log.txt
 DEBIAN_FRONTEND=noninteractive apt install -y sudo
 sudo apt update
@@ -18,7 +19,6 @@ elif [[ "$arch" == "aarch64" ]]; then
     yggdistr="https://github.com/yggdrasil-network/yggdrasil-go/releases/download/v0.5.12/yggdrasil-0.5.12-arm64.deb"
 fi
 
-mkdir -p temp apps data/share/log
 echo PATH="$PATH:/home/$USER/.local/bin:$PWD/bin" | sudo tee /etc/environment
 echo COPYRUS="$PWD" | sudo tee -a /etc/environment
 echo IPFS_PATH="$PWD/data/.ipfs" | sudo tee -a /etc/environment
