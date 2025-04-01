@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+cd "$(realpath "$(dirname "$0")")"/.. || exit
+cat data/id.txt
+ipfs --version
+echo -n "IPFS status:"
+ipfs cat QmYwoMEk7EvxXi6LcS2QE6GqaEYQGzfGaTJ9oe1m2RBgfs/test.txt
+echo -n "IPFSmount status:"
+cat /ipfs/QmYwoMEk7EvxXi6LcS2QE6GqaEYQGzfGaTJ9oe1m2RBgfs/test.txt
+echo -n "NodeJS: "
+node -v
+echo -n "NPM: "
+npm -v
+source .venv/bin/activate
+python3 --version
+pip --version
+echo -n "Copyrus: " && git log -1 --format=%cd | cat
+free
+df -H
+echo -n "CPU Load: " && cat /proc/loadavg
