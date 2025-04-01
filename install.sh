@@ -111,6 +111,9 @@ sudo systemctl enable ipfssub
 sudo systemctl restart ipfssub
 sleep 9
 
+ipfs bootstrap add /ip6/21f:5234:5548:31e5:a334:854b:5752:f4fc/tcp/4001/p2p/12D3KooWNNhG9Qzopb3wtytrxpZdRikMgNq6hWinVmuaWFjYCjcZ
+ipfs bootstrap add /ip6/21f:5234:5548:31e5:a334:854b:5752:f4fc/udp/4001/quic/p2p/12D3KooWNNhG9Qzopb3wtytrxpZdRikMgNq6hWinVmuaWFjYCjcZ
+
 echo -e "$(sudo crontab -l)\n@reboot echo \"\$(date -u) System is rebooted\" >> $PWD/data/log.txt\n* * * * * su $USER -c \"bash $PWD/bin/cron.sh\"" | sudo crontab -
 
 sudo apt-get update && sudo DEBIAN_FRONTEND=noninteractive apt install -y ca-certificates curl gnupg
