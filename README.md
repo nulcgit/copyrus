@@ -1,6 +1,6 @@
 # Copyrus
 
-Copyrus - soft copy of occurrences / Копирус - электронная копия событий
+Copyrus - soft copy of useful / Копирус - электронная копия полезного
 
 Warning:  
 This is alpha software. Use at your own discretion!  
