@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+cd "$(realpath "$(dirname "$0")")"/../data/share || exit
+if [ ! -f "list.txt" ]; then
+    echo "Error: list.txt not found in the current directory. Creating..."
+    touch list.txt
+fi
+for item in "$COPYRUS/data/share"/*; do
+    if [ -d "$item" ]; then
+        folder_name=$(basename "$item")
+        if ! awk '{print $3}' list.txt | grep -q "^$folder_name"; then
+                    echo "Folder not in list: $folder_name"
+            current_date="$(date -u '+%Y%m%d-%H%M%S')"
+            current_folder="$current_date-${folder_name// /-}"
+            mv "$folder_name" "$current_folder"
+            sleep 3
+            hash=$(ipfs add -r --nocopy -Q "$COPYRUS/data/share/$current_folder")
+            ipfspub $hash
+            echo "$hash $current_date $current_folder" >> list.txt
+            fi
+    fi
+done

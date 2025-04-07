@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+cd "$(realpath "$(dirname "$0")")"/../data/share || exit
+ipfs pin add $1
+echo "$1 $(date -u '+%Y%m%d-%H%M%S') $2" >> list.txt

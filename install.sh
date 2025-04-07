@@ -165,4 +165,5 @@ str=$(ipfs id) && echo $str | cut -c10-61 > $PWD/data/id.txt
 (echo -n "$(date -u) Copyrus system is installed. ID=" && cat $PWD/data/id.txt) >> $PWD/data/log.txt
 ipfspub 'Initial message'
 ipfs pubsub pub copyrus $PWD/data/log.txt
+echo "hash time log" > data/share/list.txt
 sudo reboot
